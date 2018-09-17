@@ -3,13 +3,11 @@
 require_once "./vendor/autoload.php";
 $url = $_SERVER["REQUEST_URI"];
 
-$routes = [
-  "/" => "Index/show",
-  "/news/" => "News/index",
-  "/news/(\d+)" => "News/show",
-];
+$routesConfig = new \Libs\Config\FileSource("./config", "routes");
 
 try {
+    $routes = $routesConfig->get();
+
     $router = new \Libs\Router($routes, "Errors/show404");
     $router->execute($url);
 } catch (Exception $e) {
