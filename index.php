@@ -4,6 +4,7 @@ require_once "./vendor/autoload.php";
 $url = $_SERVER["REQUEST_URI"];
 
 $routes = [
+  "/" => "Index/show",
   "/news/" => "News/index",
   "/news/(\d+)" => "News/show",
 ];
