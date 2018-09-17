@@ -10,7 +10,7 @@ $routes = [
 ];
 
 try {
-    $router = new \Libs\Router($routes);
+    $router = new \Libs\Router($routes, "Errors/show404");
     $router->execute($url);
 } catch (Exception $e) {
     echo "Произошла ошибка: " . $e->getMessage();

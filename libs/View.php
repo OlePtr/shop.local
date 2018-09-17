@@ -12,4 +12,9 @@ class View
         include "./templates/".$template.".php";
         include "./templates/common/footer.php";
     }
+
+    public function setNotFound()
+    {
+        header("HTTP/1.1 404 Not Found");
+    }
 }
