@@ -4,12 +4,12 @@ namespace Controllers;
 class News extends Controller
 {
     private $news;
-    private $view;
 
     public function __construct()
     {
+        // вызов родительского конструктора
+        parent::__construct();
         $this->news = new \Models\News();
-        $this->view = new \Libs\View();
     }
 
     // метод для показа главной страницы новостей (списка)
