@@ -16,14 +16,24 @@ class Router
     public function execute($path)
     {
         foreach ($this->routes as $route => $pathToController) {
-            if (preg_match("#^{$route}$#", $path)) {
+            $matches = [];
+
+            if (preg_match("#^{$route}$#", $path, $matches)) {
+
                 $parts = explode("/", $pathToController);
 
                 $controllerName = "\\Controllers\\{$parts[0]}";
                 $controller = new $controllerName;
+
                 $methodName = $parts[1];
 
-                $controller->{$methodName}();
+                $arg = null;
+
+                if (isset($matches[1])) {
+                    $arg = $matches[1];
+                }
+
+                $controller->{$methodName}($arg);
             }
         }
     }
