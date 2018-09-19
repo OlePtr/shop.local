@@ -5,10 +5,17 @@ namespace Libs\Config;
 class FileSource implements ISource
 {
     protected $settings = [];
+    protected $name = "";
 
     public function __construct ($dir, $file)
     {
         $this->settings = (include $dir . "/" . $file .  ".php");
+        $this->name = $file;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function get($name = "")

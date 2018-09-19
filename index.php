@@ -1,12 +1,18 @@
 <?php
 
+use \Libs\Config\{Config,FileSource};
+
 require_once "./vendor/autoload.php";
 $url = $_SERVER["REQUEST_URI"];
 
-$routesConfig = new \Libs\Config\FileSource("./config", "routes");
+$config = Config::getInstance();
 
 try {
-    $routes = $routesConfig->get();
+    $config->add(new FileSource("./config", "routes"));
+    $config->add(new FileSource("./config", "database"));
+    $config->add(new FileSource("./config", "system"));
+
+    $routes = $config->get("routes");
 
     $router = new \Libs\Router($routes, "Errors/show404");
     $router->execute($url);
