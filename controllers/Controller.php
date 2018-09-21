@@ -9,7 +9,7 @@ abstract class Controller
 
     public function __construct ()
     {
-        $this->view = new \Libs\View();
         $this->config = \Libs\Config\Config::getInstance();
+        $this->view = new \Libs\View($this->config->get("system:templates_dir"));
     }
 }

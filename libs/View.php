@@ -4,13 +4,20 @@ namespace Libs;
 
 class View
 {
+    protected $templatesDir = null;
+
+    public function __construct($dir)
+    {
+        $this->templatesDir = $dir;
+    }
+
     public function display($template, $dataArray)
     {
         extract($dataArray);
 
-        include "./templates/common/header.php";
-        include "./templates/".$template.".php";
-        include "./templates/common/footer.php";
+        include $this->templatesDir . "/common/header.php";
+        include $this->templatesDir . "/".$template.".php";
+        include $this->templatesDir . "/common/footer.php";
     }
 
     public function setNotFound()
