@@ -36,12 +36,20 @@ class Router
 
     protected function runController($pathToController, $arg = null)
     {
-        $parts = explode("/", $pathToController);
+        // заменяем прямой слеш на обратный
+        $pathToController = str_replace("/", "\\", $pathToController);
 
-        $controllerName = "\\Controllers\\{$parts[0]}";
+        // находим соответствия с регулярным выражением, в котором первая часть
+        // это путь к классу (с пространством имённ), а вторая - название метода
+        $matches = [];
+        preg_match("#^(.+)\\\(\w+)$#", $pathToController, $matches);
+
+        $controllerName = "\\Controllers\\{$matches[1]}";
         $controller = new $controllerName;
 
-        $methodName = $parts[1];
+
+
+        $methodName = $matches[2];
         return $controller->{$methodName}($arg);
     }
 
