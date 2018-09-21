@@ -1,10 +1,10 @@
 <?php
-    foreach ($news as $key => $item) {
+    foreach ($news as $item) {
         ?>
             <article style="border-bottom: 1px dashed;">
                 <h2><?= $item["title"]?></h2>
                 <p><?= $item["content"]?></p>
-                <a href="/news/<?= $key?>">Читать далее</a>
+                <a href="/news/<?= $item["id"]?>">Читать далее</a>
             </article>
         <?php
     }

@@ -1,8 +1,8 @@
 <?php
-namespace Libs;
+namespace Libs\DB;
 
 
-class DB
+class Connector
 {
     protected static $instance = null;
     protected $conn = null;
@@ -33,7 +33,8 @@ class DB
     public function query($str)
     {
         if ($this->conn) {
-            return $this->conn->query($str);
+            $res = $this->conn->query($str);
+            return new Result($res);
         }
 
         throw new \Exception("Невозможно выполнить запрос к базе без подключения к ней!");

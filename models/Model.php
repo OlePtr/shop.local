@@ -9,7 +9,7 @@ abstract class Model
     public function __construct ()
     {
         try {
-            $this->db = \Libs\DB::getInstance();
+            $this->db = \Libs\DB\Connector::getInstance();
             $this->config = \Libs\Config\Config::getInstance();
 
             $host = $this->config->get("database:host");

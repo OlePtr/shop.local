@@ -6,14 +6,12 @@ class News extends Model
     public function all()
     {
        $result = $this->db->query("SELECT * FROM news");
-       return $result->fetch_all(MYSQLI_ASSOC);
+       return $result->all();
     }
 
     public function get($id)
     {
-        return [
-            "title" => "Пример заголовка {$id}",
-            "content" => "Пример контента {$id}"
-        ];
+        $result = $this->db->query("SELECT * FROM  news WHERE id={$id}");
+        return $result->row();
     }
 }
