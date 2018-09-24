@@ -20,8 +20,8 @@
                     <?= $item["title"]?>
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="/news/<?= $item["id"]?>">Изменить</a>
-                    <a class="btn btn-sm btn-danger" href="/news/<?= $item["id"]?>">Удалить</a>
+                    <a class="btn btn-sm btn-primary" href="/admin/news/edit/<?= $item["id"]?>">Изменить</a>
+                    <a class="btn btn-sm btn-danger" href="/admin/news/delete/<?= $item["id"]?>">Удалить</a>
                 </td>
             </tr>
         <?php

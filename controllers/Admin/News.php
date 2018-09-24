@@ -28,7 +28,8 @@ class News extends Controller
     public function add()
     {
         $data = [
-            "pageTitle" => "Добавление новости"
+            "pageTitle" => "Добавление новости",
+            "formAction" => "/admin/news/create"
         ];
 
         $this->view->display("news/form", $data);
@@ -36,10 +37,7 @@ class News extends Controller
 
     public function create()
     {
-        $data = [
-            "title" => Helper::post("title"),
-            "content" => Helper::post("content"),
-        ];
+        $data = $this->getPostData();
 
         try {
             $this->news->add($data);
@@ -49,13 +47,52 @@ class News extends Controller
             $this->view->display("news/form", [
                 "pageTitle" => "Добавление новости",
                 "error" => $e->getMessage(),
-                "formData" => $data
+                "formData" => $data,
+                "formAction" => "/admin/news/create"
             ]);
         }
     }
 
     public function edit($id)
     {
+        $news = $this->news->get($id);
 
+        if ($news) {
+            $this->view->display("news/form", [
+                "pageTitle" => "Редактирование новости",
+                "formData" => $news,
+                "formAction" => "/admin/news/save/{$news["id"]}"
+            ]);
+        } else {
+            echo "404 Not Found";
+        }
     }
+
+    public function save($id)
+    {
+        $data = $this->getPostData();
+
+        try {
+           // $this->news->update($id, $data);
+            Helper::redirect("/admin/news/edit/{$id}");
+        } catch (\Exception $e) {
+
+            $this->view->display("news/form", [
+                "pageTitle" => "Редактирование новости",
+                "error" => $e->getMessage(),
+                "formData" => $data,
+                "formAction" => "/admin/news/save/{$id}"
+            ]);
+        }
+    }
+
+    protected function getPostData()
+    {
+        return [
+            "title" => Helper::post("title"),
+            "content" => Helper::post("content"),
+        ];
+    }
+
+
 }

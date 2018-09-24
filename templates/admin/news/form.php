@@ -3,7 +3,7 @@
         Заполните форму
     </div>
     <div class="card-body">
-        <form action="/admin/news/create" method="post" class="form">
+        <form action="<?= $formAction?>" method="post" class="form">
             <div class="form-group">
                 <label for="title">Заголовок новости <span class="text-danger">*</span></label>
                 <input
