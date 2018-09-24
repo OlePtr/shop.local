@@ -1,6 +1,8 @@
 <?php
 namespace Controllers\Admin;
 
+use Libs\Helper;
+
 class News extends Controller
 {
     protected $news;
@@ -30,6 +32,26 @@ class News extends Controller
         ];
 
         $this->view->display("news/form", $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            "title" => Helper::post("title"),
+            "content" => Helper::post("content"),
+        ];
+
+        try {
+            $this->news->add($data);
+            Helper::redirect("/admin/news/");
+        } catch (\Exception $e) {
+
+            $this->view->display("news/form", [
+                "pageTitle" => "Добавление новости",
+                "error" => $e->getMessage(),
+                "formData" => $data
+            ]);
+        }
     }
 
     public function edit($id)

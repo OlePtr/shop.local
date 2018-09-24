@@ -3,16 +3,24 @@
         Заполните форму
     </div>
     <div class="card-body">
-        <form action="/admin/news/add" method="post" class="form">
+        <form action="/admin/news/create" method="post" class="form">
             <div class="form-group">
                 <label for="title">Заголовок новости <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    value="<?= isset($formData["title"]) ? $formData["title"] : ""?>">
             </div>
 
             <div class="form-group mb-5">
                 <label for="content">Текст новости <span class="text-danger">*</span></label>
-                <textarea name="content" id="content" rows="10"
-                                              class="form-control"></textarea>
+                <textarea
+                    name="content"
+                    id="content"
+                    rows="10"
+                    class="form-control"><?= isset($formData["content"]) ? $formData["content"] : ""?></textarea>
             </div>
 
             <button class="btn btn-success btn-lg" type="submit">Сохранить</button>

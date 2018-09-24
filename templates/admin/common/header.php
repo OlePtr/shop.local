@@ -11,3 +11,12 @@
 <body>
     <div class="container">
         <h1 class="display-4 mb-3"><?= $pageTitle?></h1>
+        <?php
+            if (isset($error)) {
+                ?>
+                    <div class="alert alert-danger">
+                        <?= $error?>
+                    </div>
+                <?php
+            }
+        ?>
