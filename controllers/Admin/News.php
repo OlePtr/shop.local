@@ -86,6 +86,16 @@ class News extends Controller
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $this->news->delete($id);
+            Helper::redirect("/admin/news/");
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     protected function getPostData()
     {
         return [
