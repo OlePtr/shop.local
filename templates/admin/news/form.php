@@ -14,6 +14,16 @@
                     value="<?= isset($formData["title"]) ? $formData["title"] : ""?>">
             </div>
 
+            <div class="form-group">
+                <label for="author">Автор <span class="text-danger">*</span></label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="author"
+                    name="author"
+                    value="<?= isset($formData["author"]) ? $formData["author"] : ""?>">
+            </div>
+
             <div class="form-group mb-5">
                 <label for="content">Текст новости <span class="text-danger">*</span></label>
                 <textarea

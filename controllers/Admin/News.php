@@ -73,7 +73,7 @@ class News extends Controller
         $data = $this->getPostData();
 
         try {
-           // $this->news->update($id, $data);
+            $this->news->update($id, $data);
             Helper::redirect("/admin/news/edit/{$id}");
         } catch (\Exception $e) {
 
@@ -91,6 +91,7 @@ class News extends Controller
         return [
             "title" => Helper::post("title"),
             "content" => Helper::post("content"),
+            "author" => Helper::post("author"),
         ];
     }
 

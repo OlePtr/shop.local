@@ -17,25 +17,46 @@ class News extends Model
 
     public function add($arr)
     {
+        $this->checkData($arr);
+        $setStr = $this->generateSetSql($arr);
+        $this->db->query("INSERT INTO news SET {$setStr}");
+
+    }
+
+    public function update($id, $arr)
+    {
+        $this->checkData($arr);
+        $setStr = $this->generateSetSql($arr);
+        $this->db->query("UPDATE news SET {$setStr} WHERE id={$id}");
+    }
+
+    protected function checkData($arr)
+    {
         $validator = new \Sirius\Validation\Validator;
         $validator->add([
-           "title" => "required | maxlength(255)",
-           "content" => "required | minlength(100)"
+            "title" => "required | maxlength(255)",
+            "content" => "required | minlength(100)",
+            "author" => "required | maxlength(255)",
         ]);
 
         if ($validator->validate($arr)) {
-            $setStr = "";
-
-            foreach ($arr as $key => $value) {
-                if ($setStr !== "") {
-                    $setStr .= ",";
-                }
-                $setStr .= " {$key} = '{$value}' ";
-            }
-
-            $this->db->query("INSERT INTO news SET {$setStr}");
+            return true;
         } else {
             throw new \Exception("Заполните корректно форму!");
         }
+    }
+
+    protected function generateSetSql ($arr)
+    {
+        $setStr = "";
+
+        foreach ($arr as $key => $value) {
+            if ($setStr !== "") {
+                $setStr .= ",";
+            }
+            $setStr .= " {$key} = '{$value}' ";
+        }
+
+        return $setStr;
     }
 }
