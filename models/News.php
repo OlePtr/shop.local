@@ -1,11 +1,11 @@
 <?php
 namespace Models;
 
-class Catalog extends Model
+class News extends Model
 {
     public function all()
     {
-       $result = $this->db->query("SELECT * FROM catalog");
+       $result = $this->db->query("SELECT * FROM news");
        return $result->all();
     }
 
@@ -27,14 +27,14 @@ class Catalog extends Model
     {
         $this->checkData($arr);
         $setStr = $this->generateSetSql($arr);
-        $this->db->query("UPDATE catalog SET {$setStr} WHERE id={$id}");
+        $this->db->query("UPDATE news SET {$setStr} WHERE id={$id}");
     }
 
     public function delete($id)
     {
         $news = $this->get($id);
         if ($news) {
-            $this->db->query("DELETE FROM catalog WHERE id={$id}");
+            $this->db->query("DELETE FROM news WHERE id={$id}");
         } else {
             throw new \Exception("Невозможно удалить несуществующую запись!");
         }
@@ -46,7 +46,7 @@ class Catalog extends Model
         $validator->add([
             "title" => "required | maxlength(255)",
             "content" => "required | minlength(100)",
-            "author" => "required | maxlength(255)",
+            "author" => "required | maxlength(255)",            
         ]);
 
         if ($validator->validate($arr)) {

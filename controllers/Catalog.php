@@ -19,10 +19,10 @@ class Catalog extends Controller
 
         $data = [
             "news" => $list,
-            "pageTitle" => "Список всех новостей"
+            "pageTitle" => "Список всех продуктов каталога"
         ];
 
-        $this->view->display("news/list", $data);
+        $this->view->display("catalog/list", $data);
     }
 
     // для просмотра новости

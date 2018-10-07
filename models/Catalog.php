@@ -1,17 +1,17 @@
 <?php
 namespace Models;
 
-class News extends Model
+class Catalog extends Model
 {
     public function all()
     {
-       $result = $this->db->query("SELECT * FROM news");
+       $result = $this->db->query("SELECT * FROM catalog");
        return $result->all();
     }
 
     public function get($id)
     {
-        $result = $this->db->query("SELECT * FROM  news WHERE id={$id}");
+        $result = $this->db->query("SELECT * FROM  catalog WHERE id={$id}");
         return $result->row();
     }
 
@@ -19,7 +19,7 @@ class News extends Model
     {
         $this->checkData($arr);
         $setStr = $this->generateSetSql($arr);
-        $this->db->query("INSERT INTO news SET {$setStr}");
+        $this->db->query("INSERT INTO catalog SET {$setStr}");
 
     }
 
@@ -27,14 +27,14 @@ class News extends Model
     {
         $this->checkData($arr);
         $setStr = $this->generateSetSql($arr);
-        $this->db->query("UPDATE news SET {$setStr} WHERE id={$id}");
+        $this->db->query("UPDATE catalog SET {$setStr} WHERE id={$id}");
     }
 
     public function delete($id)
     {
         $news = $this->get($id);
         if ($news) {
-            $this->db->query("DELETE FROM news WHERE id={$id}");
+            $this->db->query("DELETE FROM catalog WHERE id={$id}");
         } else {
             throw new \Exception("Невозможно удалить несуществующую запись!");
         }
@@ -45,8 +45,8 @@ class News extends Model
         $validator = new \Sirius\Validation\Validator;
         $validator->add([
             "title" => "required | maxlength(255)",
-            "content" => "required | minlength(100)",
-            "author" => "required | maxlength(255)",
+            "description" => "required | minlength(100)",
+            "price" => "required", 
         ]);
 
         if ($validator->validate($arr)) {
