@@ -59,7 +59,7 @@ class Catalog extends Controller
 
         if ($catalog) {
             $this->view->display("catalog/form", [
-                "pageTitle" => "Редактирование продукта",
+                "pageTitle" => "Редактирование товара",
                 "formData" => $catalog,
                 "formAction" => "/admin/catalog/save/{$catalog["id"]}"
             ]);
@@ -78,7 +78,7 @@ class Catalog extends Controller
         } catch (\Exception $e) {
 
             $this->view->display("catalog/form", [
-                "pageTitle" => "Редактирование продукта",
+                "pageTitle" => "Редактирование товара",
                 "error" => $e->getMessage(),
                 "formData" => $data,
                 "formAction" => "/admin/catalog/save/{$id}"

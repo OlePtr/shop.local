@@ -15,22 +15,22 @@
             </div>
 
             <div class="form-group">
-                <label for="description"> <span class="text-danger">*</span></label>
+                <label for="price">Стоимость <span class="text-danger">*</span></label>
                 <input
                     type="text"
                     class="form-control"
-                    id="description"
-                    name="description"
-                    value="<?= isset($formData["description"]) ? $formData["description"] : ""?>">
+                    id="price"
+                    name="price"
+                    value="<?= isset($formData["price"]) ? $formData["price"] : ""?>">
             </div>
 
             <div class="form-group mb-5">
-                <label for="content">Текст новости <span class="text-danger">*</span></label>
+                <label for="content">Описание товара <span class="text-danger">*</span></label>
                 <textarea
-                    name="content"
-                    id="content"
+                    name="description"
+                    id="description"
                     rows="10"
-                    class="form-control"><?= isset($formData["content"]) ? $formData["content"] : ""?></textarea>
+                    class="form-control"><?= isset($formData["description"]) ? $formData["description"] : ""?></textarea>
             </div>
 
             <button class="btn btn-success btn-lg" type="submit">Сохранить</button>
