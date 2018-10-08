@@ -32,8 +32,8 @@ class Catalog extends Model
 
     public function delete($id)
     {
-        $news = $this->get($id);
-        if ($news) {
+        $catalog = $this->get($id);
+        if ($catalog) {
             $this->db->query("DELETE FROM catalog WHERE id={$id}");
         } else {
             throw new \Exception("Невозможно удалить несуществующую запись!");

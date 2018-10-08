@@ -9,7 +9,7 @@ class Catalog extends Controller
     {
         // вызов родительского конструктора
         parent::__construct();
-        $this->catalog = new \Models\News();
+        $this->catalog = new \Models\Catalog();
     }
 
     // метод для показа главной страницы новостей (списка)
@@ -18,7 +18,7 @@ class Catalog extends Controller
         $list = $this->catalog->all();
 
         $data = [
-            "news" => $list,
+            "catalog" => $list,
             "pageTitle" => "Список всех продуктов каталога"
         ];
 
@@ -30,8 +30,8 @@ class Catalog extends Controller
     {
         $news = $this->catalog->get($id);
 
-        $this->view->display("news/page", [
-           "content" => $news["content"],
+        $this->view->display("catalog/page", [
+           "description" => $news["description"],
            "pageTitle" => $news["title"]
         ]);
     }
